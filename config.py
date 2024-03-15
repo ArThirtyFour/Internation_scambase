@@ -10,7 +10,8 @@ botur.set_parse_mode(enums.ParseMode.MARKDOWN)
 lang.commit()
 
 
-
+owner_id = 1234567
+zam_id = 9876542
 photo_reestr_logo = 'https://raw.githubusercontent.com/ArThirtyFour/antiscambaza_RB/main/pictures/reestr_logo.jpg'
 photo_admin = 'https://raw.githubusercontent.com/ArThirtyFour/antiscambaza_RB/main/pictures/admin.jpg'
 photo_garant ='https://raw.githubusercontent.com/ArThirtyFour/antiscambaza_RB/main/pictures/garant.jpg'
