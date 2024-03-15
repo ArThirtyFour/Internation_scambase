@@ -5,7 +5,7 @@ from datetime import datetime
 
 from main.check import check , check_you , app , check_reestr , check_resster_me , check_prepiska , check_prepiska_me
 from main.klavs import *
-from config import botur , cursor , lang
+from config import botur , cursor , lang , owner_id , zam_id
 from main.clava_obra import clava
 from another.vnos_logi import *
 from another.ban import *
@@ -117,7 +117,7 @@ def listur(bot,message):
         clava_sub(bot,message)
 @botur.on_message(filters.command('send'))
 def rasskilka(bot,message):
-    if message.from_user.id == 6956961980:
+    if message.from_user.id == id_owner:
         all_sends = 0
         all_users = cursor.execute('SELECT id FROM users').fetchall()
         text=" ".join(message.text.split()[1:])
@@ -131,7 +131,7 @@ def rasskilka(bot,message):
 
 @botur.on_message(filters.command('ban'))
 def banned(bot,message):
-    if message.from_user.id == 6956961980:
+    if message.from_user.id ==  owner_id:
         try:
             id = int(message.text.split()[1])
             bot.send_message(message.chat.id, ban(id) )
@@ -141,7 +141,7 @@ def banned(bot,message):
         bot.send_message(message.chat.id,'❌ Вы не имеете прав ❌')
 @botur.on_message(filters.command('unban'))
 def banned(bot,message):
-    if message.from_user.id == 6956961980:
+    if message.from_user.id == owner_id:
         try:
             id = int(message.text.split()[1])
             bot.send_message(message.chat.id, unban(id) )
@@ -151,7 +151,7 @@ def banned(bot,message):
         bot.send_message(message.chat.id,'❌ Вы не имеете прав ❌')
 @botur.on_message(filters.command('addgarant'))
 def add_garant1(bot,message):
-    if message.from_user.id == 6956961980 or message.from_user.id == 6565689251:
+    if message.from_user.id == owner_id or message.from_user.id == zam_id:
         try:
             da = message.text.split('|')
             id_g , baza , proofs = da[1].strip() , da[2].strip() , da[3].strip()
@@ -163,7 +163,7 @@ def add_garant1(bot,message):
 
 @botur.on_message(filters.command('delgarant'))
 def del_garant1(bot,message):
-    if message.from_user.id == 6956961980 or message.from_user.id == 6565689251:
+    if message.from_user.id == owner_id or message.from_user.id == zam_id:
         try:
             arg = message.text.split()[1]
             if arg[0] == '@':
