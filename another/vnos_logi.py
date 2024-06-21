@@ -1,5 +1,5 @@
 from datetime import datetime
-from config import lang , cursor
+from config import lang , cursor , chat_channel
 def vnos_v_basy(id_author,arg):
     cursor.execute('DELETE FROM logi WHERE id_check  IS NULL')
     time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -19,7 +19,7 @@ def txt_file(id_user):
 
 def sub_check(bot,user_id):
     try:
-        bot.get_chat_member(chat_id=-1001678618296, user_id=user_id)
+        bot.get_chat_member(chat_id=chat_channel, user_id=user_id)
         return True
     except:
         return False
