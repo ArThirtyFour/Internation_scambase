@@ -5,6 +5,7 @@ from main.check import check_you , check_resster_me , check_prepiska_me
 from main.klavs import *
 from another.vnos_logi import txt_file , vnos_v_basy
 from another.garants import send_reestr , find_number_garants
+
 def clava(bot,message):
     zapos = cursor.execute('SELECT COUNT(id_check) FROM logi').fetchone()[0]
     subs = cursor.execute('SELECT COUNT(id) FROM users').fetchone()[0]

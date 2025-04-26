@@ -4,12 +4,10 @@ from pyrogram import Client
 from pyrogram.errors import UsernameNotOccupied
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import *
-from main.klavs import klava_resstr
+from main import klava_resstr
 
     
-api_id = 1234567
-api_hash = "abcsef"
-app = Client("my_account", api_id=api_id, api_hash=api_hash)
+
 chat_ids = [ ]
 slovo_garant = ['Является 🥉Мини-Гарантом','Является 🥈Обычным Гарантом','Репутация: Гарант','Ему можно доверять']
 slovo_scam = ['Находится в SCAM базе!','| Данный человек, является СКАМЕРОМ ','Репутация: СКАММЕР','Репутация: Петух','Репутация: Возможно Скаммер','Репутация: Плохая Репутация','Репутация: На рассмотрении']
@@ -22,9 +20,9 @@ slovo_not = ['Является обычным пользователем.','Ре
 
 def send_photo_base(message,chat_id,reply_markup):
     for i in app.get_chat_history(chat_id,limit=4):
-        if i.text != None and i.from_user.id != 2014964057:
+        if i.text != None and i.from_user.id != app_id:
             text = i.text
-        elif i.caption != None and i.from_user.id != 2014964057:
+        elif i.caption != None and i.from_user.id != app_id:
             text = i.caption
         for i in range(0,4):
             if text.count(slovo_garant[i]) > 0:
@@ -62,10 +60,10 @@ def check(bot, message):
                 sleep(1)
                 bot.delete_messages(message.chat.id, mess.id)
                 send_photo_base(message,chat_id,btn)
-                bot.send_message(-1001851091026,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
+                bot.send_message(channel_logs,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
             except Exception as exo:
                 bot.send_message(message.chat.id,f'❗️ Телеграмм вернул ошибку ❗️ \n- - - - - - - - - -\n{exo}')   
-                bot.send_message(-1001851091026,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
+                bot.send_message(channel_logs,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
         elif arg[0] in [str(i) for i in range(0,10)]:
             btn=InlineKeyboardMarkup([[InlineKeyboardButton('🟢 Вечная ссылка 🟢',url=f'tg://openmessage?user_id={arg}')]])
             mess = bot.send_message(message.chat.id,'⚡️ Я отправил запрос! Время ожидания: +- 1 секунда ⚡️')
@@ -75,10 +73,10 @@ def check(bot, message):
             sleep(1)
             bot.delete_messages(message.chat.id, mess.id)
             send_photo_base(message,chat_id,btn)
-            bot.send_message(-1001851091026,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
+            bot.send_message(channel_logs,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
         else:
             message.reply_text('Неправильно задан агрумент!', quote=True)
-            bot.send_message(-1001851091026,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
+            bot.send_message(channel_logs,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /check')
         return f'/check {arg}'
     except IndexError:
         bot.send_message(message.chat.id,'❗️ Агрумент не задан ❗️')
@@ -96,7 +94,7 @@ def check_you(bot,message):
     sleep(1)
     bot.delete_messages(message.chat.id, mess.id)
     send_photo_base(message,chat_id,btn)
-    bot.send_message(-1001851091026,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /me')
+    bot.send_message(channel_logs,f'Мне пришел лог! Отправлял {message.from_user.id} запрос /me')
     return f'/me'
 
 def check_reestr(bot , message):

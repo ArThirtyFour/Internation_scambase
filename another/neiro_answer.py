@@ -1,7 +1,6 @@
+from config import *
+from main import btn_preloshka
 
-from openai import OpenAI
-from main.klavs import btn_preloshka
-client = OpenAI(api_key='бери ключ', base_url="https://api.deepseek.com/v1")
 list_scam_words = ['скам','скамер','кидок','кинул']
 def check_scam(bot,message):
     for i in list_scam_words:

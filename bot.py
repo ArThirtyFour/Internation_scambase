@@ -3,14 +3,12 @@ import os
 from pyrogram import filters
 from datetime import datetime 
 
-from main.check import check , check_you , app , check_reestr , check_resster_me , check_prepiska , check_prepiska_me
-from main.klavs import *
+from main import *
+from another import *
 from config import botur , cursor , lang , owner_id , zam_id
 from main.clava_obra import clava
-from another.vnos_logi import *
-from another.ban import *
-from another.garants import *
-from another.neiro_answer import check_scam
+
+
 @botur.on_message(filters.command('start'))
 def da(bot,message):
     if sub_check(bot,message.from_user.id) and not check_ban(message.from_user.id):
@@ -117,7 +115,7 @@ def listur(bot,message):
         clava_sub(bot,message)
 @botur.on_message(filters.command('send'))
 def rasskilka(bot,message):
-    if message.from_user.id == id_owner:
+    if message.from_user.id == owner_id:
         all_sends = 0
         all_users = cursor.execute('SELECT id FROM users').fetchall()
         text=" ".join(message.text.split()[1:])
