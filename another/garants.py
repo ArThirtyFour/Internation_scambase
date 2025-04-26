@@ -1,7 +1,7 @@
 from sqlite3 import IntegrityError
 from time import sleep
 from config import lang , cursor , botur , photo_reestr_logo
-from main.klavs import klava_resstr
+from main import klava_resstr
 def add_garant(user_id , baze , proofs ):
     try:
         cursor.execute('INSERT INTO garants VALUES(?,?,?)',(user_id,baze,proofs))
